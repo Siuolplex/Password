@@ -174,10 +174,12 @@ public final class PasswordLogic implements Listener {
         boolean correct = serverPassword.equals(entered);
 
         if (correct && autoWhitelist) {
-            OfflinePlayer offline = Bukkit.getOfflinePlayer(uuid);
+            Bukkit.getGlobalRegionScheduler().run(plugin, task -> {
+                OfflinePlayer offline = Bukkit.getOfflinePlayer(uuid);
             if (!offline.isWhitelisted()) {
                 offline.setWhitelisted(true);
             }
+            });
         }
 
         CompletableFuture<Boolean> f = awaiting.get(uuid);

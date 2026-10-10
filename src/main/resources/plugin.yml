@@ -10,3 +10,4 @@ permissions:
   password.bypass:
     description: Players with that permission never have to enter the password.
     default: false
+folia-supported: true
